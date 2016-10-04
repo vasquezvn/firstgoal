@@ -6,10 +6,10 @@ import Pages.Products.NewProductForm;
 import Pages.Products.ProductProfile;
 import Pages.Products.ProductsHome;
 import Pages.TopBar.TabBar;
-import org.junit.After;
 import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
 
 /**
  * Created by ivan on 3/10/16.
@@ -33,7 +33,7 @@ public class EditProduct {
     private String  productFamilyUpdated = "";
     //endregion
 
-    @Before
+    @BeforeTest
     public void BeforeTest() {
         BrowserManager.getInstance().goStartPage("https://login.salesforce.com/");
         tapBar = new LoginPage()
@@ -82,7 +82,7 @@ public class EditProduct {
 
     }
 
-    @After
+    @AfterTest
     public void afterTest() {
         productProfile.pressDeleteBtn();
 

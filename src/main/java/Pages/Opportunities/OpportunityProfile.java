@@ -26,19 +26,19 @@ public class OpportunityProfile {
     @CacheLookup
     WebElement editBtn;
 
-    @FindBy(name="opp3_ileinner")
+    @FindBy(id="opp3_ileinner")
     @CacheLookup
     WebElement opportunityNameLabel;
 
-    @FindBy(name="opp4_ileinner")
+    @FindBy(id="opp4_ileinner")
     @CacheLookup
     WebElement accountNameLabel;
 
-    @FindBy(name="opp9_ileinner")
+    @FindBy(id="opp9_ileinner")
     @CacheLookup
     WebElement closeDateLabel;
 
-    @FindBy(name="opp11_ileinner")
+    @FindBy(id="opp11_ileinner")
     @CacheLookup
     WebElement stageLabel;
 

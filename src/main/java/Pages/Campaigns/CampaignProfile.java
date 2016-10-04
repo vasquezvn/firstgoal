@@ -42,12 +42,12 @@ public class CampaignProfile {
         return CampaignNameLabel.getText();
     }
 
-    public CampaignsHome clickDeleteButton()
-    {
+    public CampaignsHome clickDeleteButton() {
         CommonActions.click(DeleteButton);
         Alert alert = Driver.switchTo().alert();
         alert.accept();
         Driver.switchTo().defaultContent();
+
         return new CampaignsHome(Driver);
     }
 

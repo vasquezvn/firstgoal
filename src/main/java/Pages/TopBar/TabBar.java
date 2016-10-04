@@ -25,23 +25,23 @@ public class TabBar {
     WebDriverWait wait;
 
     // region Locators
-    @FindBy(xpath = "//*[@id='Campaign_Tab']/*[contains(.,'Campaigns')]")
+    @FindBy(xpath = "//*[@id='Campaign_Tab']/*[contains(.,'Campañas')]")
     @CacheLookup
     WebElement CampaignsTab;
 
-    @FindBy(xpath = "//*[@id='Opportunity_Tab']/*[contains(.,'Opportunities')]")
+    @FindBy(xpath = "//*[@id='Opportunity_Tab']/*[contains(.,'Oportunidades')]")
     @CacheLookup
     WebElement opportunitiesTab;
 
-    @FindBy(xpath = "//*[@id='Product2_Tab']/*[contains(.,'Products')]")
+    @FindBy(xpath = "//*[@id='Product2_Tab']/*[contains(.,'Productos')]")
     @CacheLookup
     WebElement productsTab;
 
-    @FindBy(xpath = "//*[@id='Account_Tab']/*[contains(.,'Accounts')]")
+    @FindBy(xpath = "//*[@id='Account_Tab']/*[contains(.,'Cuentas')]")
     @CacheLookup
     WebElement accountTab;
 
-    @FindBy(xpath = "//a[@title='Leads Tab']")
+    @FindBy(xpath = "//a[@title='Ficha Candidatos']")
     @CacheLookup
     WebElement LeadTab;
 

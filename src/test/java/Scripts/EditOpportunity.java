@@ -1,15 +1,20 @@
 package Scripts;
 
 import Framework.BrowserManager;
+import Pages.Accounts.AccountProfile;
+import Pages.Accounts.AccountsHome;
+import Pages.Accounts.NewAccountForm;
 import Pages.LoginPage;
 import Pages.Opportunities.NewOpportunityForm;
 import Pages.Opportunities.OpportunitiesHome;
 import Pages.Opportunities.OpportunityProfile;
 import Pages.TopBar.TabBar;
-import org.junit.After;
 import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
+
+import java.util.Random;
 
 /**
  * Created by ivan on 3/10/16.
@@ -22,16 +27,20 @@ public class EditOpportunity {
     OpportunityProfile opportunityProfile;
 
     //region values
+    private AccountsHome accountsHome;
+    private NewAccountForm newAccountForm;
+    private AccountProfile accountProfile;
+    private String accountUrl;
+
     private boolean isPrivate = true;
-    private String opportunityName = "Opp_name1";
-    private String opportunityNameUpdate = "Opp_name2";
-    private String accountName = "test account_1";
-    private String accountNameUpdate = "test account_2";
+    private String opportunityName = "Opp_name";
+    private String opportunityNameUpdate = "Opp_name_UPDATED";
+    private String accountName;
     private String stage = "Needs Analysis";
     private String stageUpdate = "Perception Analysis";
     //endregion
 
-    @Before
+    @BeforeTest
     public void BeforeTest() {
         BrowserManager.getInstance().goStartPage("https://login.salesforce.com/");
         tapBar = new LoginPage()
@@ -39,7 +48,30 @@ public class EditOpportunity {
                 .setPasswordField("Control123")
                 .clickLoginToSalesForceButton();
 
+        createAccount();
         createOpportunity();
+    }
+
+    @Test
+    public void EditOpportunity() {
+        newOpportunityForm = opportunityProfile
+                .pressEditBtn();
+
+        opportunityProfile = newOpportunityForm
+                .uncheckPrivateFlag(isPrivate)
+                .setOpportunityName(opportunityNameUpdate)
+                .chooseStageDdl(stageUpdate)
+                .pressSaveBtn();
+
+        Assert.assertEquals(opportunityProfile.isPrivateFlag(), false);
+        Assert.assertEquals(opportunityProfile.getOpportunityName(), opportunityNameUpdate);
+        Assert.assertEquals(opportunityProfile.getStage(), stageUpdate);
+    }
+
+    @AfterTest
+    public void afterTest()
+    {
+        opportunityProfile.pressDeleteBtn();
     }
 
     private void createOpportunity() {
@@ -58,28 +90,20 @@ public class EditOpportunity {
                 .pressSaveBtn();
     }
 
-    @Test
-    public void EditOpportunity()
-    {
-        newOpportunityForm = opportunityProfile
-                .pressEditBtn();
+    private void createAccount() {
+        accountName = "Account_" + new Random().nextInt(9999);
 
-        opportunityProfile = newOpportunityForm
-                .uncheckPrivateFlag(isPrivate)
-                .setOpportunityName(opportunityNameUpdate)
-                .setAccountName(accountNameUpdate)   // TODO: lookup
-                .chooseStageDdl(stageUpdate)
+        accountsHome = tapBar
+                .clickAccountsTab();
+
+        newAccountForm = accountsHome
+                .clickNewButton();
+
+        accountProfile = newAccountForm
+                .setAccountName(accountName)
                 .pressSaveBtn();
 
-        Assert.assertEquals(opportunityProfile.isPrivateFlag(), false);
-        Assert.assertEquals(opportunityProfile.getOpportunityName(), opportunityNameUpdate);
-        Assert.assertEquals(opportunityProfile.getAccountName(), accountNameUpdate);
-        Assert.assertEquals(opportunityProfile.getStage(), stageUpdate);
-    }
+        accountUrl = accountProfile.getUrl();
 
-    @After
-    public void afterTest()
-    {
-        opportunityProfile.pressDeleteBtn();
     }
 }

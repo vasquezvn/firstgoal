@@ -39,6 +39,7 @@ public class CampaignsHome {
 
     public CampaignProfile goCampaingProfile(String url) {
         Driver.navigate().to(url);
+
         return new CampaignProfile(Driver);
     }
 }

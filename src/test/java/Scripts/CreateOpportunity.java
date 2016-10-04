@@ -13,10 +13,10 @@ import Pages.Opportunities.NewOpportunityForm;
 import Pages.Opportunities.OpportunitiesHome;
 import Pages.Opportunities.OpportunityProfile;
 import Pages.TopBar.TabBar;
-import org.junit.After;
 import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
 
 import java.util.Random;
 
@@ -58,9 +58,8 @@ public class CreateOpportunity {
 
     //endregion
 
-    @Before
-    public void BeforeTest()
-    {
+    @BeforeTest
+    public void BeforeTest() {
         BrowserManager.getInstance().goStartPage("https://login.salesforce.com/");
         tapBar = new LoginPage()
                 .setUserNameField("automationqa@test.com")
@@ -68,11 +67,11 @@ public class CreateOpportunity {
                 .clickLoginToSalesForceButton();
         createCampaign();
         createAccount();
+
     }
 
     @Test
-    public void CreateOpportunity()
-    {
+    public void CreateOpportunity() {
         opportunitiesHome = tapBar
                 .clickOpportunityTab();
 
@@ -102,7 +101,7 @@ public class CreateOpportunity {
 
     }
 
-    @After
+    @AfterTest
     public void afterTest()
     {
         opportunityProfile.pressDeleteBtn();
@@ -139,5 +138,6 @@ public class CreateOpportunity {
                 .clickSaveButton();
 
         campaingUrl = campaignProfile.getUrl();
+
     }
 }
