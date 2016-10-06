@@ -18,7 +18,7 @@ import java.util.Set;
  */
 public class NewOpportunityForm {
 
-    WebDriver Driver;
+    WebDriver driver;
     WebDriverWait wait;
 
     // to manage window popup
@@ -26,86 +26,86 @@ public class NewOpportunityForm {
     Set<String> windows;
 
     // region Locators
-    @FindBy(name="save")
+    @FindBy(name = "save")
     @CacheLookup
     WebElement saveBtn;
 
-    @FindBy(id="opp2")
+    @FindBy(id = "opp2")
     @CacheLookup
     WebElement privateFlag;
 
-    @FindBy(id="opp3")
+    @FindBy(id = "opp3")
     @CacheLookup
     WebElement opportunityNameTextBox;
 
-    @FindBy(id="opp4")
+    @FindBy(id = "opp4")
     @CacheLookup
     WebElement accountNameTextBox;
 
-    @FindBy(xpath= "//img=[@alt='Account name Lookup (New Window)']")
+    @FindBy(xpath = "//img=[@alt='Account name Lookup (New Window)']")
     @CacheLookup
     WebElement accountNameLookupIconBtn;
 
-    @FindBy(id="opp5")
+    @FindBy(id = "opp5")
     @CacheLookup
     WebElement multiSelectType;
 
-    @FindBy(id="opp6")
+    @FindBy(id = "opp6")
     @CacheLookup
     WebElement multiSelectLeadSource;
 
-    @FindBy(id="opp7")
+    @FindBy(id = "opp7")
     @CacheLookup
     WebElement amountTextBox;
 
-    @FindBy(id="opp9")
+    @FindBy(id = "opp9")
     @CacheLookup
     WebElement closeDateTextBox;
 
-    @FindBy(xpath="//input[@id='opp9']/following::a")
+    @FindBy(xpath = "//input[@id='opp9']/following::a")
     @CacheLookup
     WebElement todayLink;
 
-    @FindBy(id="opp10")
+    @FindBy(id = "opp10")
     @CacheLookup
     WebElement nextStepTextBox;
 
-    @FindBy(id="opp11")
+    @FindBy(id = "opp11")
     @CacheLookup
     WebElement multiSelectStage;
 
-    @FindBy(id="opp12")
+    @FindBy(id = "opp12")
     @CacheLookup
     WebElement probabilityTextBox;
 
-    @FindBy(id="opp17")
+    @FindBy(id = "opp17")
     @CacheLookup
     WebElement primaryCampaingSourceTextBox;
 
-    @FindBy(xpath="//img[@alt='Primary Campaign Source Lookup (New Window)']")
+    @FindBy(xpath = "//img[@alt='Primary Campaign Source Lookup (New Window)']")
     @CacheLookup
     WebElement primaryCampaignSourceLookupIconBtn;
 
-    @FindBy(xpath="//td[contains(., 'Order Number')]/following::input")
+    @FindBy(xpath = "//td[contains(., 'Order Number')]/following::input")
     @CacheLookup
     WebElement ordernumberTextBox;
 
-    @FindBy(xpath="//td[contains(., 'Delivery')]/following::span/select")
+    @FindBy(xpath = "//td[contains(., 'Delivery')]/following::span/select")
     @CacheLookup
     WebElement multiSelectDeliveryinstallationStatus;
 
-    @FindBy(id="opp14")
+    @FindBy(id = "opp14")
     @CacheLookup
     WebElement descriptionTextArea;
 
     // endregion
 
     public NewOpportunityForm(WebDriver driver) {
-        Driver = driver;
-        wait = BrowserManager.getInstance().Waiter;
+        this.driver = driver;
+        wait = BrowserManager.getInstance().waiter;
         mainWindowId = driver.getWindowHandle();
 
-        PageFactory.initElements(Driver, this);
+        PageFactory.initElements(this.driver, this);
     }
 
     public NewOpportunityForm checkPrivateFlag(boolean flag) {
@@ -212,18 +212,18 @@ public class NewOpportunityForm {
     public OpportunityProfile pressSaveBtn() {
         saveBtn.click();
 
-        return new OpportunityProfile(Driver);
+        return new OpportunityProfile(driver);
     }
 
     public LookUpWindow clickAccountNameLookUpIcon() {
         CommonActions.click(accountNameLookupIconBtn);
 
-        return new LookUpWindow(Driver);
+        return new LookUpWindow(driver);
     }
 
     public LookUpWindow clickPrimaryCampaignSrcLookUpIcon() {
         CommonActions.click(primaryCampaignSourceLookupIconBtn);
 
-        return new LookUpWindow(Driver);
+        return new LookUpWindow(driver);
     }
 }

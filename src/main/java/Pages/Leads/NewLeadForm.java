@@ -14,7 +14,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
  */
 public class NewLeadForm {
 
-    WebDriver Driver;
+    WebDriver driver;
     WebDriverWait wait;
 
     // region Locators
@@ -44,15 +44,15 @@ public class NewLeadForm {
 
     @FindBy(name = "save")
     @CacheLookup
-    WebElement SaveButton;
+    WebElement saveButton;
 
     // endregion
 
     public NewLeadForm(WebDriver driver) {
-        Driver = driver;
-        wait = BrowserManager.getInstance().Waiter;
+        this.driver = driver;
+        wait = BrowserManager.getInstance().waiter;
 
-        PageFactory.initElements(driver, this);
+        PageFactory.initElements(this.driver, this);
     }
 
     public NewLeadForm setLastNameField(String text) {
@@ -93,8 +93,8 @@ public class NewLeadForm {
     }
 
     public LeadProfile clickSaveButton() {
-        CommonActions.click(SaveButton);
+        CommonActions.click(saveButton);
 
-        return new LeadProfile(Driver);
+        return new LeadProfile(driver);
     }
 }

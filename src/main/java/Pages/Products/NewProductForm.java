@@ -14,41 +14,41 @@ import org.openqa.selenium.support.ui.WebDriverWait;
  */
 public class NewProductForm {
 
-    WebDriver Driver;
+    WebDriver driver;
     WebDriverWait wait;
 
     //region Locators
     @FindBy(name = "save")
     @CacheLookup
-    private WebElement saveBtn;
+    WebElement saveBtn;
 
     @FindBy(id = "Name")
     @CacheLookup
-    private WebElement productNameTextbox;
+    WebElement productNameTextbox;
 
     @FindBy(id = "ProductCode")
     @CacheLookup
-    private WebElement productCodeTextbox;
+    WebElement productCodeTextbox;
 
     @FindBy(id = "IsActive")
     @CacheLookup
-    private WebElement activeFlag;
+    WebElement activeFlag;
 
     @FindBy(id = "Family")
     @CacheLookup
-    private WebElement multiSelectProductFamily;
+    WebElement multiSelectProductFamily;
 
     @FindBy(id = "Description")
     @CacheLookup
-    private WebElement descriptionTextArea;
+    WebElement descriptionTextArea;
 
     //endregion
 
     public NewProductForm(WebDriver driver) {
-        Driver = driver;
-        wait = BrowserManager.getInstance().Waiter;
+        this.driver = driver;
+        wait = BrowserManager.getInstance().waiter;
 
-        PageFactory.initElements(Driver, this);
+        PageFactory.initElements(this.driver, this);
     }
 
     public NewProductForm setProductName(String productName) {
@@ -103,6 +103,6 @@ public class NewProductForm {
     public ProductProfile pressSaveBtn() {
         saveBtn.click();
 
-        return new ProductProfile(Driver);
+        return new ProductProfile(driver);
     }
 }

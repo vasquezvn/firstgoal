@@ -29,11 +29,12 @@ public class LoginPage {
     @FindBy(id = "Login")
     @CacheLookup
     WebElement loginField;
+
     //endregion
 
     public LoginPage() {
-        driver = BrowserManager.getInstance().Browser;
-        wait = BrowserManager.getInstance().Waiter;
+        driver = BrowserManager.getInstance().browser;
+        wait = BrowserManager.getInstance().waiter;
 
         PageFactory.initElements(driver, this);
     }

@@ -15,13 +15,13 @@ import org.openqa.selenium.support.ui.WebDriverWait;
  */
 public class CampaignProfile {
 
-    WebDriver Driver;
+    WebDriver driver;
     WebDriverWait wait;
 
     // region Locators
     @FindBy(className = "pageDescription")
     @CacheLookup
-    WebElement CampaignNameLabel;
+    WebElement campaignNameLabel;
 
     @FindBy(name = "del")
     @CacheLookup
@@ -31,29 +31,27 @@ public class CampaignProfile {
 
 
     public CampaignProfile(WebDriver driver) {
-        Driver = driver;
-        wait = BrowserManager.getInstance().Waiter;
+        this.driver = driver;
+        wait = BrowserManager.getInstance().waiter;
 
-        PageFactory.initElements(driver, this);
+        PageFactory.initElements(this.driver, this);
+
     }
 
-    public String getCampaignNameLabel() {
-
-        return CampaignNameLabel.getText();
-    }
+    public String getCampaignNameLabel() { return campaignNameLabel.getText(); }
 
     public CampaignsHome clickDeleteButton() {
         CommonActions.click(DeleteButton);
-        Alert alert = Driver.switchTo().alert();
+        Alert alert = driver.switchTo().alert();
         alert.accept();
-        Driver.switchTo().defaultContent();
+        driver.switchTo().defaultContent();
 
-        return new CampaignsHome(Driver);
+        return new CampaignsHome(driver);
     }
 
     public String getUrl()
     {
-        return Driver.getCurrentUrl();
+        return driver.getCurrentUrl();
     }
 
 }

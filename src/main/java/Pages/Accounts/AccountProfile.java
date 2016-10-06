@@ -13,27 +13,25 @@ import org.openqa.selenium.support.ui.WebDriverWait;
  */
 public class AccountProfile {
 
-    WebDriver Driver;
+    WebDriver driver;
     WebDriverWait wait;
 
     // region Locators
     @FindBy(id = "acc2_ileinner")
     @CacheLookup
-    private WebElement accountNameLabel;
+    WebElement accountNameLabel;
 
     // endregion
 
 
     public AccountProfile(WebDriver driver) {
-        Driver = driver;
-        wait = BrowserManager.getInstance().Waiter;
+        this.driver = driver;
+        wait = BrowserManager.getInstance().waiter;
 
-        PageFactory.initElements(driver, this);
+        PageFactory.initElements(this.driver, this);
+
     }
 
-    public String getUrl()
-    {
-        return Driver.getCurrentUrl();
-    }
+    public String getUrl() {   return driver.getCurrentUrl();   }
 
 }

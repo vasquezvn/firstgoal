@@ -21,7 +21,7 @@ import java.util.LinkedList;
  */
 public class LookUpWindow {
 
-    WebDriver Driver;
+    WebDriver driver;
     WebDriverWait wait;
 
     String PreviousWindow;
@@ -30,82 +30,82 @@ public class LookUpWindow {
     // region Locators
     @FindBy(xpath = "//div[@class='pBody']/select")
     @CacheLookup
-    WebElement SearchWithinDropdown;
+    WebElement searchWithinDropdown;
 
     @FindBy(xpath = "//div[@class='pBody']/input[@type='text']")
     @CacheLookup
-    WebElement SearchField;
+    WebElement searchField;
 
     @FindBy(xpath = "//div[@class='pBody']/input[@class='btn' and @type='submit']")
     @CacheLookup
-    WebElement GoButton;
+    WebElement goButton;
 
     @FindBy(className = "dataRow even last first")
     @CacheLookup
-    WebElement RowsContaine;
+    WebElement rowsContaine;
 
     @FindBy(id = "searchFrame")
     @CacheLookup
-    WebElement SearchFrame;
+    WebElement searchFrame;
 
     @FindBy(id = "resultsFrame")
     @CacheLookup
-    WebElement SearchResultFrame;
+    WebElement searchResultFrame;
 
     // endregion
 
     public LookUpWindow(WebDriver driver) {
-        Driver = driver;
-        wait = BrowserManager.getInstance().Waiter;
-        PageFactory.initElements(driver, this);
+        this.driver = driver;
+        wait = BrowserManager.getInstance().waiter;
+        PageFactory.initElements(this.driver, this);
 
         String LookUpWindown = new LinkedList(driver.getWindowHandles()).getLast().toString();
-        Driver.switchTo().window(LookUpWindow);
+        driver.switchTo().window(LookUpWindow);
     }
 
     public LookUpWindow selectSerachWithinDropdown(String item) {
-        CommonActions.selectItem(SearchWithinDropdown, item);
+        CommonActions.selectItem(searchWithinDropdown, item);
 
         return this;
     }
 
     public LookUpWindow setSearchWithinField(String text) {
-        CommonActions.setValue(SearchField, text);
+        CommonActions.setValue(searchField, text);
 
         return this;
     }
 
     public LookUpWindow clickGoButton() {
-        CommonActions.click(GoButton);
+        CommonActions.click(goButton);
 
         return this;
     }
 
     public NewCampaignForm clickResult(String text) {
-        CommonActions.click(RowsContaine.findElement(By.xpath("//a[contains(., '"
+        CommonActions.click(rowsContaine.findElement(By.xpath("//a[contains(., '"
                 + text +"')]")));
-        Driver.switchTo().defaultContent();
+        driver.switchTo().defaultContent();
 
-        return new NewCampaignForm(Driver);
+        return new NewCampaignForm(driver);
     }
 
     public NewOpportunityForm clickResultGotoNewOpportunityForm(String text) {
-        CommonActions.click(RowsContaine.findElement(By.xpath("//a[contains(.,'" +
+        CommonActions.click(rowsContaine.findElement(By.xpath("//a[contains(.,'" +
                 text + "')]")));
-        Driver.switchTo().defaultContent();
+        driver.switchTo().defaultContent();
 
-        return new NewOpportunityForm(Driver);
+        return new NewOpportunityForm(driver);
     }
 
 
     public LookUpWindow switchSearchFrame() {
-        Driver.switchTo().frame(SearchFrame);
+        driver.switchTo().frame(searchFrame);
 
         return this;
     }
 
     public LookUpWindow switchResultFrame() {
-        Driver.switchTo().frame(SearchResultFrame);
+        driver.switchTo().frame(searchResultFrame);
 
         return this;
     }

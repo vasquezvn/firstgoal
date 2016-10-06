@@ -13,57 +13,58 @@ import org.openqa.selenium.support.ui.WebDriverWait;
  */
 public class ProductProfile {
 
-    WebDriver Driver;
+    WebDriver driver;
     WebDriverWait wait;
 
     //region Locators
     @FindBy(name = "del")
     @CacheLookup
-    private WebElement deleteBtn;
+    WebElement deleteBtn;
 
     @FindBy(name = "edit")
     @CacheLookup
-    private WebElement editBtn;
+    WebElement editBtn;
 
     @FindBy(id = "Name_ileinner")
     @CacheLookup
-    private WebElement productNameLabel;
+    WebElement productNameLabel;
 
     @FindBy(id = "ProductCode_ileinner")
     @CacheLookup
-    private WebElement productCodeLabel;
+    WebElement productCodeLabel;
 
     @FindBy(id = "Description_ileinner")
     @CacheLookup
-    private WebElement productDescriptionLabel;
+    WebElement productDescriptionLabel;
 
     @FindBy(id = "IsActive_chkbox")
     @CacheLookup
-    private WebElement activeFlagImg;
+    WebElement activeFlagImg;
 
     @FindBy(id = "Family_ileinner")
     @CacheLookup
-    private WebElement productFamilyLabel;
+    WebElement productFamilyLabel;
 
     //endregion
 
     public ProductProfile(WebDriver driver) {
-        Driver = driver;
-        wait = BrowserManager.getInstance().Waiter;
+        this.driver = driver;
+        wait = BrowserManager.getInstance().waiter;
 
-        PageFactory.initElements(driver, this);
+        PageFactory.initElements(this.driver, this);
     }
 
     public void pressDeleteBtn() {
         deleteBtn.click();
-        Driver.switchTo().alert().accept();
-        Driver.switchTo().defaultContent();
+        driver.switchTo().alert().accept();
+        driver.switchTo().defaultContent();
+
     }
 
     public NewProductForm pressEditBtn() {
         editBtn.click();
 
-        return new NewProductForm(Driver);
+        return new NewProductForm(driver);
     }
 
     public String getProductName() {
@@ -82,8 +83,7 @@ public class ProductProfile {
         boolean result = false;
         String attributeState = activeFlagImg.getAttribute("title");
 
-        if (attributeState.equals("Checked"))
-        {
+        if (attributeState.equals("Checked")) {
             result = true;
         }
 

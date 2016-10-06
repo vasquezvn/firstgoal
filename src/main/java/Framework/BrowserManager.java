@@ -15,8 +15,8 @@ public class BrowserManager {
 
     private static BrowserManager instance;
 
-    public WebDriver Browser;
-    public WebDriverWait Waiter;
+    public WebDriver browser;
+    public WebDriverWait waiter;
 
     private int timeout = 30;
 
@@ -38,14 +38,14 @@ public class BrowserManager {
     private void openBrowser(String browserName) {
         try {
             if (browserName.equalsIgnoreCase("Firefox")) {
-                Browser = new FirefoxDriver();
+                browser = new FirefoxDriver();
             }
             else if (browserName.equalsIgnoreCase("Chrome")) {
                 System.setProperty("webdriver.chrome.driver", "/src/main/resources/chromedriver");
-                Browser = new ChromeDriver();
+                browser = new ChromeDriver();
             }
             else {
-                System.out.println("incorrect Browser");
+                System.out.println("incorrect browser");
             }
         }
         catch (WebDriverException wde) {
@@ -55,26 +55,26 @@ public class BrowserManager {
     }
 
     private void configureBrowser() {
-        // Maximize Browser window
-        Browser.manage().window().maximize();
+        // Maximize browser window
+        browser.manage().window().maximize();
 
         // Set Implicit waits
-        Browser.manage().timeouts().implicitlyWait(timeout, TimeUnit.SECONDS);
-        Browser.manage().timeouts().pageLoadTimeout(timeout, TimeUnit.SECONDS);
-        Browser.manage().timeouts().setScriptTimeout(timeout, TimeUnit.SECONDS);
+        browser.manage().timeouts().implicitlyWait(timeout, TimeUnit.SECONDS);
+        browser.manage().timeouts().pageLoadTimeout(timeout, TimeUnit.SECONDS);
+        browser.manage().timeouts().setScriptTimeout(timeout, TimeUnit.SECONDS);
 
         // Delete Cookies
-        Browser.manage().deleteAllCookies();
+        browser.manage().deleteAllCookies();
 
     }
 
     private void startWait() {
-        Waiter = new WebDriverWait(Browser, timeout);
+        waiter = new WebDriverWait(browser, timeout);
 
     }
 
     public void goStartPage(String url) {
-        Browser.get(url);
+        browser.get(url);
 
     }
 }

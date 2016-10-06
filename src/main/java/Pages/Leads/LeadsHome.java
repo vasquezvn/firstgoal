@@ -14,26 +14,26 @@ import org.openqa.selenium.support.ui.WebDriverWait;
  */
 public class LeadsHome {
 
-    WebDriver Driver;
+    WebDriver driver;
     WebDriverWait wait;
 
     //region Locators
     @FindBy(xpath = "//*[@name='new' and @type='button']")
     @CacheLookup
-    WebElement NewLeadFormButtton;
+    WebElement newLeadFormButtton;
 
     //endregion
 
     public LeadsHome(WebDriver driver) {
-        Driver = driver;
-        wait = BrowserManager.getInstance().Waiter;
+        this.driver = driver;
+        wait = BrowserManager.getInstance().waiter;
 
-        PageFactory.initElements(Driver, this);
+        PageFactory.initElements(this.driver, this);
     }
 
     public NewLeadForm clickNewButton() {
-        CommonActions.click(NewLeadFormButtton);
+        CommonActions.click(newLeadFormButtton);
 
-        return new NewLeadForm(Driver);
+        return new NewLeadForm(driver);
     }
 }

@@ -14,64 +14,61 @@ import org.openqa.selenium.support.ui.WebDriverWait;
  */
 public class OpportunityProfile {
 
-    WebDriver Driver;
+    WebDriver driver;
     WebDriverWait wait;
 
     // region Locators
-    @FindBy(name="del")
+    @FindBy(name = "del")
     @CacheLookup
     WebElement deleteBtn;
 
-    @FindBy(name="edit")
+    @FindBy(name = "edit")
     @CacheLookup
     WebElement editBtn;
 
-    @FindBy(id="opp3_ileinner")
+    @FindBy(id = "opp3_ileinner")
     @CacheLookup
     WebElement opportunityNameLabel;
 
-    @FindBy(id="opp4_ileinner")
+    @FindBy(id = "opp4_ileinner")
     @CacheLookup
     WebElement accountNameLabel;
 
-    @FindBy(id="opp9_ileinner")
+    @FindBy(id = "opp9_ileinner")
     @CacheLookup
     WebElement closeDateLabel;
 
-    @FindBy(id="opp11_ileinner")
+    @FindBy(id = "opp11_ileinner")
     @CacheLookup
     WebElement stageLabel;
 
-    @FindBy(xpath="//td[contains(., 'Order Number')]/following::div")
+    @FindBy(xpath = "//td[contains(., 'Order Number')]/following::div")
     @CacheLookup
     WebElement orderNumberLabel;
 
-    @FindBy(xpath="//td[contains(., 'Delivery/Installation Status')]/following::div")
+    @FindBy(xpath = "//td[contains(., 'Delivery/Installation Status')]/following::div")
     @CacheLookup
     WebElement deliveryInstallLabel;
 
-    @FindBy(id="opp2_chkbox")
+    @FindBy(id = "opp2_chkbox")
     @CacheLookup
     WebElement privateFlagImg;
 
     // endregion
 
     public OpportunityProfile(WebDriver driver) {
-        Driver = driver;
-        wait = BrowserManager.getInstance().Waiter;
+        this.driver = driver;
+        wait = BrowserManager.getInstance().waiter;
 
-        PageFactory.initElements(driver, this);
+        PageFactory.initElements(this.driver, this);
     }
 
-    public void pressDeleteBtn() {
-        CommonActions.clickAcceptAlert(deleteBtn, Driver);
-
-    }
+    public void pressDeleteBtn() {  CommonActions.clickAcceptAlert(deleteBtn, driver);  }
 
     public NewOpportunityForm pressEditBtn() {
         CommonActions.click(editBtn);
 
-        return new NewOpportunityForm(Driver);
+        return new NewOpportunityForm(driver);
     }
 
     public boolean isPrivateFlag() {

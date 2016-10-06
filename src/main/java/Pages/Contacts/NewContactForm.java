@@ -15,70 +15,70 @@ import org.openqa.selenium.support.ui.WebDriverWait;
  */
 public class NewContactForm {
 
-    WebDriver Driver;
+    WebDriver driver;
     WebDriverWait wait;
 
 
     // region Locators
-    @FindBy(id="name_salutationcon2")
+    @FindBy(id = "name_salutationcon2")
     @CacheLookup
     WebElement firstnameCategoryField;
 
-    @FindBy(id="name_firstcon2")
+    @FindBy(id = "name_firstcon2")
     @CacheLookup
     WebElement firstNameField;
 
-    @FindBy(id="name_lastcon2")
+    @FindBy(id = "name_lastcon2")
     @CacheLookup
     WebElement lastNameField;
 
-    @FindBy(id="con4")
+    @FindBy(id = "con4")
     @CacheLookup
     WebElement accountNameField;
 
-    @FindBy(id="con5")
+    @FindBy(id = "con5")
     @CacheLookup
     WebElement titleField;
 
-    @FindBy(id="con6")
+    @FindBy(id = "con6")
     @CacheLookup
     WebElement departmentField;
 
-    @FindBy(id="con7")
+    @FindBy(id = "con7")
     @CacheLookup
     WebElement birthDateField;
 
-    @FindBy(id="con8")
+    @FindBy(id = "con8")
     @CacheLookup
     WebElement reportToField;
 
-    @FindBy(id="con9")
+    @FindBy(id = "con9")
     @CacheLookup
     WebElement leadSourceField;
 
-    @FindBy(id="con10")
+    @FindBy(id = "con10")
     @CacheLookup
     WebElement phoneField;
 
-    @FindBy(xpath="//input[@tabindex='31']")
+    @FindBy(xpath = "//input[@tabindex='31']")
     @CacheLookup
     WebElement saveBtn;
 
-    @FindBy(xpath="//input[@tabindex='32']")
+    @FindBy(xpath = "//input[@tabindex='32']")
     @CacheLookup
     WebElement saveNewBtn;
 
-    @FindBy(xpath="//input[@tabindex='33']")
+    @FindBy(xpath = "//input[@tabindex='33']")
     @CacheLookup
     WebElement cancelBtn;
 
     // endregion
 
     public NewContactForm(WebDriver driver) {
-        Driver = driver;
-        wait = BrowserManager.getInstance().Waiter;
+        this.driver = driver;
+        wait = BrowserManager.getInstance().waiter;
 
-        PageFactory.initElements(driver, this);
+        PageFactory.initElements(this.driver, this);
     }
 
     public NewContactForm selectFirstNameCategory(String item) {
@@ -126,7 +126,7 @@ public class NewContactForm {
     public LookUpWindow clickReportTo() {
         CommonActions.click(reportToField);
 
-        return new LookUpWindow(Driver);
+        return new LookUpWindow(driver);
     }
 
     public NewContactForm selectLeadSource(String item) {
@@ -138,7 +138,7 @@ public class NewContactForm {
     public ContactsProfile clickSaveButton() {
         CommonActions.click(saveBtn);
 
-        return new ContactsProfile(Driver);
+        return new ContactsProfile(driver);
     }
 
 

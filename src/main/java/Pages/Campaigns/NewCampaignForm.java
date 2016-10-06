@@ -15,80 +15,80 @@ import org.openqa.selenium.support.ui.WebDriverWait;
  */
 public class NewCampaignForm {
 
-    WebDriver Driver;
+    WebDriver driver;
     WebDriverWait wait;
 
     // region Locators
     @FindBy(id = "cpn1")
     @CacheLookup
-    WebElement CampaignNameField;
+    WebElement campaignNameField;
 
     @FindBy(id = "cpn16")
     @CacheLookup
-    WebElement ActiveCheckbox;
+    WebElement activeCheckbox;
 
     @FindBy(id = "cpn2")
     @CacheLookup
-    WebElement TypeDropdown;
+    WebElement typeDropdown;
 
     @FindBy(id = "cpn5")
     @CacheLookup
-    WebElement StartDateField;
+    WebElement startDateField;
 
     @FindBy(id = "Parent")
     @CacheLookup
-    WebElement ParentCampaign;
+    WebElement parentCampaign;
 
     @FindBy(id = "Parent_lkgt")
     @CacheLookup
-    WebElement LookUpIcon;
+    WebElement lookUpIcon;
 
     @FindBy(name = "save")
     @CacheLookup
-    WebElement SaveButton;
+    WebElement saveButton;
 
     //endregion
 
     public NewCampaignForm(WebDriver driver) {
-        Driver = driver;
-        wait = BrowserManager.getInstance().Waiter;
+        this.driver = driver;
+        wait = BrowserManager.getInstance().waiter;
 
-        PageFactory.initElements(driver, this);
+        PageFactory.initElements(this.driver, this);
     }
 
     public NewCampaignForm setCampaignNameField(String text) {
-        CommonActions.setValue(CampaignNameField, text);
+        CommonActions.setValue(campaignNameField, text);
 
         return this;
     }
 
     public NewCampaignForm checkActiveCheckbox() {
-        CommonActions.check(ActiveCheckbox);
+        CommonActions.check(activeCheckbox);
 
         return this;
     }
 
     public NewCampaignForm selectTypeDropdown(String item) {
-        CommonActions.selectItem(TypeDropdown, item);
+        CommonActions.selectItem(typeDropdown, item);
 
         return this;
     }
 
     public NewCampaignForm setStartDateField(String date) {
-        CommonActions.setValue(StartDateField, date);
+        CommonActions.setValue(startDateField, date);
 
         return this;
     }
 
     public LookUpWindow clickLookUpIcon() {
-        CommonActions.click(LookUpIcon);
+        CommonActions.click(lookUpIcon);
 
-        return new LookUpWindow(Driver);
+        return new LookUpWindow(driver);
     }
 
     public CampaignProfile clickSaveButton() {
-        CommonActions.click(SaveButton);
+        CommonActions.click(saveButton);
 
-        return new CampaignProfile(Driver);
+        return new CampaignProfile(driver);
     }
 }

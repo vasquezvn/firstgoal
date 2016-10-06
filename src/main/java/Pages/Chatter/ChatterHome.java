@@ -14,7 +14,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
  */
 public class ChatterHome {
 
-    WebDriver Driver;
+    WebDriver driver;
     WebDriverWait wait;
 
     //region Locators
@@ -28,7 +28,7 @@ public class ChatterHome {
 
     @FindBy(xpath = "//a[@onclick='chatter.getFeed().showCommentBoxViaAnchor(this);']")
     @CacheLookup
-    WebElement CommentLink;
+    WebElement commentLink;
 
     @FindBy(xpath = "//textarea[@data-uidsfdc='126']")
     @CacheLookup
@@ -36,14 +36,14 @@ public class ChatterHome {
 
     @FindBy(xpath = "//input[contains(@id,'ext-gen8')]")
     @CacheLookup
-    WebElement CommentButton;
+    WebElement commentButton;
 
 
     public ChatterHome(WebDriver driver) {
-        Driver = driver;
-        wait = BrowserManager.getInstance().Waiter;
+        this.driver = driver;
+        wait = BrowserManager.getInstance().waiter;
 
-        PageFactory.initElements(driver, this);
+        PageFactory.initElements(this.driver, this);
     }
 
     public ChatterHome setPubliSheredArea(String text) {
@@ -59,7 +59,7 @@ public class ChatterHome {
     }
 
     public ChatterHome clickCommentLink() {
-        CommonActions.click(CommentLink);
+        CommonActions.click(commentLink);
 
         return this;
     }
@@ -71,7 +71,7 @@ public class ChatterHome {
     }
 
     public ChatterHome clickCommentButton() {
-        CommonActions.click(CommentButton);
+        CommonActions.click(commentButton);
 
         return this;
     }

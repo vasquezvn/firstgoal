@@ -14,32 +14,32 @@ import org.openqa.selenium.support.ui.WebDriverWait;
  */
 public class OpportunitiesHome {
 
-    WebDriver Driver;
+    WebDriver driver;
     WebDriverWait wait;
 
     // region Locators
-    @FindBy(xpath="//*[@name='new' and @type='button']")
+    @FindBy(xpath = "//*[@name='new' and @type='button']")
     @CacheLookup
     WebElement newbutton;
 
     // endregion
 
     public OpportunitiesHome(WebDriver driver) {
-        Driver = driver;
-        wait = BrowserManager.getInstance().Waiter;
+        this.driver = driver;
+        wait = BrowserManager.getInstance().waiter;
 
-        PageFactory.initElements(Driver, this);
+        PageFactory.initElements(this.driver, this);
     }
 
     public NewOpportunityForm clickNewButton() {
         CommonActions.click(newbutton);
 
-        return new NewOpportunityForm(Driver);
+        return new NewOpportunityForm(driver);
     }
 
     public OpportunityProfile goOpportunityProfile(String url) {
-        Driver.navigate().to(url);
+        driver.navigate().to(url);
 
-        return new OpportunityProfile(Driver);
+        return new OpportunityProfile(driver);
     }
 }

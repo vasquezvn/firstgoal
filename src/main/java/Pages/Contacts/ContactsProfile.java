@@ -14,15 +14,15 @@ import org.openqa.selenium.support.ui.WebDriverWait;
  */
 public class ContactsProfile {
 
-    WebDriver Driver;
+    WebDriver driver;
     WebDriverWait wait;
 
     // region Locators
-    @FindBy(className="topName")
+    @FindBy(className = "topName")
     @CacheLookup
-    WebElement ContactNameLabel;
+    WebElement contactNameLabel;
 
-    @FindBy(xpath="//input[@name='del']")
+    @FindBy(xpath = "//input[@name='del']")
     @CacheLookup
     WebElement deleteButton;
 
@@ -33,25 +33,19 @@ public class ContactsProfile {
     // endregion
 
     public ContactsProfile(WebDriver driver) {
-        Driver = driver;
-        wait = BrowserManager.getInstance().Waiter;
+        this.driver = driver;
+        wait = BrowserManager.getInstance().waiter;
 
-        PageFactory.initElements(driver, this);
+        PageFactory.initElements(this.driver, this);
     }
 
-    public String getContactNameLabel() {
+    public String getContactNameLabel() {  return contactNameLabel.getText(); }
 
-        return ContactNameLabel.getText();
-    }
-
-    public void deleteContact() {
-        CommonActions.clickAcceptAlert(deleteButton, Driver);
-
-    }
+    public void deleteContact() {  CommonActions.clickAcceptAlert(deleteButton, driver);  }
 
     public NewContactForm clickEditForm() {
         CommonActions.click(editButton);
 
-        return new NewContactForm(Driver);
+        return new NewContactForm(driver);
     }
 }

@@ -13,24 +13,24 @@ import org.openqa.selenium.support.ui.WebDriverWait;
  */
 public class NewAccountForm {
 
-    WebDriver Driver;
+    WebDriver driver;
     WebDriverWait wait;
 
     //region Locators
     @FindBy(id = "acc2")
     @CacheLookup
-    private WebElement accountNameTextbox;
+    WebElement accountNameTextbox;
 
     @FindBy(name = "save")
     @CacheLookup
-    private WebElement saveBtn;
+    WebElement saveBtn;
     //endregion
 
     public NewAccountForm(WebDriver driver) {
-        Driver = driver;
-        wait = BrowserManager.getInstance().Waiter;
+        this.driver = driver;
+        wait = BrowserManager.getInstance().waiter;
 
-        PageFactory.initElements(driver, this);
+        PageFactory.initElements(this.driver, this);
     }
 
     public NewAccountForm setAccountName(String accountName) {
@@ -43,6 +43,6 @@ public class NewAccountForm {
     public AccountProfile pressSaveBtn() {
         saveBtn.click();
 
-        return new AccountProfile(Driver);
+        return new AccountProfile(driver);
     }
 }

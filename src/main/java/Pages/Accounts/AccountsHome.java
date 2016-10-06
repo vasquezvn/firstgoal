@@ -14,26 +14,26 @@ import org.openqa.selenium.support.ui.WebDriverWait;
  */
 public class AccountsHome {
 
-    WebDriver Driver;
+    WebDriver driver;
     WebDriverWait wait;
 
     // region Locators
     @FindBy(xpath = "//*[@name='new' and @type='button']")
     @CacheLookup
-    WebElement NewButtton;
+    WebElement newButton;
 
     // endregion
 
     public AccountsHome(WebDriver driver) {
-        Driver = driver;
-        wait = BrowserManager.getInstance().Waiter;
+        this.driver = driver;
+        wait = BrowserManager.getInstance().waiter;
 
-        PageFactory.initElements(Driver, this);
+        PageFactory.initElements(this.driver, this);
     }
 
     public NewAccountForm clickNewButton() {
-        CommonActions.click(NewButtton);
+        CommonActions.click(newButton);
 
-        return new NewAccountForm(Driver);
+        return new NewAccountForm(driver);
     }
 }

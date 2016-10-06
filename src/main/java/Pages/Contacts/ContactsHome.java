@@ -14,7 +14,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
  */
 public class ContactsHome {
 
-    WebDriver Driver;
+    WebDriver driver;
     WebDriverWait wait;
 
     // region Locators
@@ -25,15 +25,15 @@ public class ContactsHome {
     //endregion
 
     public ContactsHome(WebDriver driver) {
-        Driver = driver;
-        wait = BrowserManager.getInstance().Waiter;
+        this.driver = driver;
+        wait = BrowserManager.getInstance().waiter;
 
-        PageFactory.initElements(driver, this);
+        PageFactory.initElements(this.driver, this);
     }
 
     public NewContactForm clickNewButton() {
         CommonActions.click(newButton);
 
-        return new NewContactForm(Driver);
+        return new NewContactForm(driver);
     }
 }
